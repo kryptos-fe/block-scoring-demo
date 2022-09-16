@@ -19,7 +19,7 @@ export const Footer = ({ membershipType }) => {
           Copyright © 2022
         </Text>
         <Text color={'primary'} fontSize={15} fontWeight={'bold'}>
-          Blocknomy.
+          Blockscoring.
         </Text>
         <Text olor={'white'} fontSize={15}>
           All rights reserved

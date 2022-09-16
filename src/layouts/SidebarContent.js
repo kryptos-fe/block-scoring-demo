@@ -10,24 +10,24 @@ export const SidebarContent = ({ linkItems, onClose, ...rest }) => {
   const router = useRouter();
   return (
     <Box
-      transition="display 3s"
+      transition='display 3s'
       bg={'sidebarBackground'}
       w={{ base: '100%', lg: 60 }}
-      pos="fixed"
+      pos='fixed'
       zIndex={1000}
-      h="full"
+      h='full'
       {...rest}>
       <Box w={'100%'} h={'100%'} pos={'relative'}>
         <Flex
-          h="16"
+          h='16'
           cursor={'pointer'}
-          alignItems="center"
-          mx="8"
-          justifyContent="center"
+          alignItems='center'
+          mx='8'
+          justifyContent='center'
           onClick={() => router.push('/')}>
           <CustomImage src={icons.logo} width={35} height={35} isFill />
-          <Text ml={'5px'} fontSize="lg" fontWeight="bold" color={'white'}>
-            Logo
+          <Text ml={'5px'} fontSize='lg' fontWeight='bold' color={'white'}>
+            Blockscoring
           </Text>
         </Flex>
         <Divider />
