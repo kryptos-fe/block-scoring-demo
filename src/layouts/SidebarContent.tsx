@@ -2,8 +2,6 @@ import React from 'react';
 import { useRouter } from 'next/router.js';
 import { Box, Divider, Flex, Text, Badge } from '@chakra-ui/react';
 import { SmallCloseIcon } from '@chakra-ui/icons';
-import { NavItem } from '@/layouts/NavItem.js';
-import Logo from '@/layouts/components/Logo';
 import {
   AiFillDatabase,
   AiTwotoneFire,
@@ -18,6 +16,8 @@ import {
   AiFillMail,
   AiTwotoneWallet,
 } from 'react-icons/ai';
+import { NavItem } from '@/layouts/NavItem.js';
+import Logo from '@/layouts/components/Logo';
 
 const MainMenu = [
   { name: 'Blockscoring Rated', icon: AiFillDatabase },
@@ -76,7 +76,7 @@ export const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           Main
         </Text>
         {MainMenu.map((link) => (
-          <NavItem key={link.name} icon={link.icon} color={null}>
+          <NavItem key={link.name} icon={link.icon} color={undefined}>
             <Text ml={2.5} color={'white'} fontSize={14}>
               {link.name}
             </Text>

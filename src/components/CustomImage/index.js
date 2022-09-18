@@ -11,8 +11,7 @@ const CustomImage = forwardRef(function CustomImage({ isFill, width, height, src
       {...props}
       width={width}
       height={height}
-      position={position || 'relative'}
-    >
+      position={position || 'relative'}>
       <Image src={src} layout="fill" objectPosition="center" objectFit={isFill ? 'cover' : 'contain'} alt="" />
     </Box>
   );
