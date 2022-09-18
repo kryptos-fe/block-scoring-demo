@@ -1,27 +1,37 @@
 import React from 'react';
 import { useRouter } from 'next/router.js';
-import { Box, Divider, Flex, Text } from '@chakra-ui/react';
+import { Box, Divider, Flex, Text, Badge } from '@chakra-ui/react';
 import { icons } from '@/constants/index.js';
 import { SmallCloseIcon } from '@chakra-ui/icons';
 import { NavItem } from '@/layouts/NavItem.js';
 import Logo from '@/layouts/components/Logo';
+import {
+  AiFillHome,
+  AiFillDatabase,
+  AiTwotoneFire,
+  AiFillPieChart,
+  AiOutlineBook,
+  AiOutlineFund,
+  AiFillVideoCamera,
+  AiOutlineCalculator,
+} from 'react-icons/ai';
 
 const MainMenu = [
-  { name: 'Blockscoring Rated', icon: icons.dashboard },
-  { name: 'Hot Cryptos', icon: icons.logo },
-  { name: 'Cryptos Portfolio', icon: icons.logo },
-  { name: 'Investment', icon: icons.logo },
-  { name: 'Bookmarks', icon: icons.logo },
-  { name: 'Highlight', icon: icons.logo },
-  { name: 'Methodology', icon: icons.logo },
+  { name: 'Blockscoring Rated', icon: AiFillDatabase },
+  { name: 'Hot Cryptos', icon: AiTwotoneFire },
+  { name: 'Cryptos Portfolio', icon: AiFillPieChart },
+  { name: 'Investment', icon: AiOutlineFund, tag: 'New' },
+  { name: 'Bookmarks', icon: AiOutlineBook },
+  { name: 'Highlight', icon: AiFillVideoCamera },
+  { name: 'Methodology', icon: AiOutlineCalculator },
 ];
 
 const SubMenu = [
-  { name: 'Submit Project', icon: icons.dashboard },
-  { name: 'About Blockscoring', icon: icons.logo },
-  { name: 'APIs', icon: icons.logo },
-  { name: 'Help & Support', icon: icons.logo },
-  { name: 'Donate', icon: icons.logo },
+  { name: 'Submit Project', icon: AiFillHome },
+  { name: 'About Blockscoring', icon: AiFillHome },
+  { name: 'APIs', icon: AiFillHome },
+  { name: 'Help & Support', icon: AiFillHome },
+  { name: 'Donate', icon: AiFillHome },
 ];
 
 interface SidebarProps {
@@ -67,6 +77,11 @@ export const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
             <Text ml={2.5} color={'#ffffffa6'} fontSize={14}>
               {link.name}
             </Text>
+            {link?.tag ? (
+              <Badge ml={'4px'} borderRadius={'4px'} colorScheme={'green'}>
+                {link.tag}
+              </Badge>
+            ) : null}
           </NavItem>
         ))}
         <Text

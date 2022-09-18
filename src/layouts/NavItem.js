@@ -1,8 +1,8 @@
 import React from 'react';
-import Image from 'next/image';
 import { Box, Flex, Link } from '@chakra-ui/react';
+import { Icon } from '@chakra-ui/icons';
 
-export const NavItem = ({ icon, children, ...rest }) => {
+export const NavItem = ({ icon, tag = '', children, ...rest }) => {
   return (
     <Link href="#" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
       <Flex
@@ -19,8 +19,17 @@ export const NavItem = ({ icon, children, ...rest }) => {
           padding: '9px 5px 9px 15px',
         }}
         {...rest}>
-        <Box sx={{ cursor: 'pointer' }} width={'14px'} height={'14px'} position={'relative'}>
-          <Image src={icon} layout="fill" objectPosition="center" objectFit={'cover'} alt="" />
+        <Box textAlign={'center'} sx={{ cursor: 'pointer' }} width={'14px'} height={'14px'} position={'relative'}>
+          {/*<Image src={icon} layout="fill" objectPosition="center" objectFit={'cover'} alt="" />*/}
+          <Icon
+            as={icon}
+            sx={{
+              cursor: 'pointer',
+            }}
+            width={'14px'}
+            height={'14px'}
+            display={{ base: 'none', lg: 'block' }}
+          />
         </Box>
         {children}
       </Flex>
