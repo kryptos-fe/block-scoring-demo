@@ -1,12 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: false,
+  reactStrictMode: true,
   images: {
     domains: ['*', '632466.sgp1.digitaloceanspaces.com'],
   },
   experimental: {
     scrollRestoration: false,
   },
-}
+  swcMinify: true,
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
