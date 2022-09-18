@@ -1,9 +1,9 @@
+import React from 'react';
 import { useRouter } from 'next/router.js';
 import { Box, Divider, Flex, Text } from '@chakra-ui/react';
 import CustomImage from '@/components/CustomImage/index.js';
 import { icons } from '@/constants/index.js';
 import { SmallCloseIcon } from '@chakra-ui/icons';
-import React from 'react';
 import { NavItem } from '@/layouts/NavItem.js';
 
 export const SidebarContent = ({ linkItems, onClose, ...rest }) => {

@@ -5,11 +5,11 @@ import React from 'react';
 
 export const NavItem = ({ icon, children, ...rest }) => {
   return (
-    <Link href="#" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+    <Link href='#' style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
       <Flex
-        align="center"
-        role="group"
-        cursor="pointer"
+        align='center'
+        role='group'
+        cursor='pointer'
         h={'42px'}
         _hover={{
           color: 'white',
@@ -20,7 +20,7 @@ export const NavItem = ({ icon, children, ...rest }) => {
           padding: '9px 5px 9px 15px',
         }}
         {...rest}>
-        <CustomImage width={'14px'} height={'14px'} isFill src={icons.dashboard} />
+        <CustomImage width={'14px'} height={'14px'} isFill src={icon} />
         {children}
       </Flex>
     </Link>
