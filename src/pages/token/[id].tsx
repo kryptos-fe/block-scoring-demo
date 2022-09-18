@@ -10,6 +10,7 @@ import { TokenChart } from '@/modules/Token/TokenChart';
 import { GoogleTrends } from '@/modules/Token/GoogleTrends.js';
 import { Statistics } from '@/modules/Token/Statistics.js';
 import { BestBuy } from '@/modules/Token/BestBuy.js';
+import NewImage from '@/components/NewImage';
 
 const TokenPage = () => {
   return (
@@ -48,7 +49,7 @@ const TokenPage = () => {
                 <Text color={'secondary'} fontSize={14} fontWeight={'bold'}>
                   Marketing & PR
                 </Text>
-                <CustomImage src={icons.info} width={15} height={15} />
+                <NewImage src={icons.info as any} width={15} height={15} />
               </Flex>
             </GridItem>
             <GridItem h={112} display={'flex'} flexDirection={'column'} p={4} justifyContent={'space-between'}>
@@ -60,7 +61,7 @@ const TokenPage = () => {
                 <Text color={'secondary'} fontSize={14} fontWeight={'bold'}>
                   Partnership
                 </Text>
-                <CustomImage src={icons.info} width={15} height={15} />
+                <NewImage src={icons.info as any} width={15} height={15} />
               </Flex>
             </GridItem>
             <GridItem h={112} display={'flex'} flexDirection={'column'} p={4} justifyContent={'space-between'}>
@@ -72,7 +73,7 @@ const TokenPage = () => {
                 <Text color={'secondary'} fontSize={14} fontWeight={'bold'}>
                   Uniqueness
                 </Text>
-                <CustomImage src={icons.info} width={15} height={15} />
+                <NewImage src={icons.info as any} width={15} height={15} />
               </Flex>
             </GridItem>
           </Grid>
