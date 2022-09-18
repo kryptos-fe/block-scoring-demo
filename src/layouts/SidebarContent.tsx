@@ -1,10 +1,10 @@
 import React from 'react';
 import { useRouter } from 'next/router.js';
 import { Box, Divider, Flex, Text } from '@chakra-ui/react';
-import CustomImage from '@/components/CustomImage/index.js';
 import { icons } from '@/constants/index.js';
 import { SmallCloseIcon } from '@chakra-ui/icons';
 import { NavItem } from '@/layouts/NavItem.js';
+import Logo from '@/layouts/components/Logo';
 
 const MainMenu = [
   { name: 'Blockscoring Rated', icon: icons.dashboard },
@@ -47,13 +47,7 @@ export const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           mx="8"
           justifyContent="center"
           onClick={() => router.push('/')}>
-          <CustomImage
-            // @ts-ignore
-            src={icons.logo}
-            width={35}
-            height={35}
-            isFill
-          />
+          <Logo />
           <Text ml={'5px'} fontSize="lg" fontWeight="bold" color={'white'}>
             Blockscoring
           </Text>
@@ -70,7 +64,7 @@ export const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         </Text>
         {MainMenu.map((link) => (
           <NavItem key={link.name} icon={link.icon}>
-            <Text ml={2.5} color={'white'} fontSize={14}>
+            <Text ml={2.5} color={'#ffffffa6'} fontSize={14}>
               {link.name}
             </Text>
           </NavItem>

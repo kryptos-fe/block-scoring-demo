@@ -56,7 +56,6 @@ export const MobileNav = ({ isOpen, onToggle, onMobileToggle, ...rest }: HeaderP
         </Box>
       </Flex>
       <HStack spacing={{ base: '0', md: '6' }}>
-        {/*<IconButton size="lg" variant="ghost" aria-label="open menu" />*/}
         <HStack spacing={4} alignItems={'center'}>
           <Icon
             as={AiFillHome}
@@ -67,11 +66,7 @@ export const MobileNav = ({ isOpen, onToggle, onMobileToggle, ...rest }: HeaderP
             display={{ base: 'none', lg: 'block' }}
           />
           <RepeatIcon />
-          <Avatar
-            size={'sm'}
-            // @ts-ignore
-            src={images.emptyProfile}
-          />
+          <Avatar size={'sm'} src={images.emptyProfile as any} />
         </HStack>
       </HStack>
     </Flex>
