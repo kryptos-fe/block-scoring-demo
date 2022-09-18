@@ -1,8 +1,9 @@
+import React from 'react';
+import { AiFillHome } from 'react-icons/ai';
 import { Avatar, Box, Flex, HStack, IconButton, Input } from '@chakra-ui/react';
-import { HamburgerIcon, RepeatIcon, SearchIcon } from '@chakra-ui/icons';
+import { HamburgerIcon, RepeatIcon, SearchIcon, Icon } from '@chakra-ui/icons';
 import CustomImage from '@/components/CustomImage/index.js';
 import { icons } from '@/constants/index.js';
-import React from 'react';
 
 export const MobileNav = ({ isOpen, onToggle, onMobileToggle, ...rest }) => {
   return (
@@ -49,11 +50,17 @@ export const MobileNav = ({ isOpen, onToggle, onMobileToggle, ...rest }) => {
           />
         </Box>
       </Flex>
-
       <HStack spacing={{ base: '0', md: '6' }}>
-        <IconButton size="lg" variant="ghost" aria-label="open menu" />
+        {/*<IconButton size="lg" variant="ghost" aria-label="open menu" />*/}
         <HStack spacing={4} alignItems={'center'}>
-          <CustomImage width={'14px'} height={'14px'} isFill src={icons.dashboard} />
+          <Icon
+            as={AiFillHome}
+            sx={{
+              cursor: 'pointer',
+            }}
+            onClick={onToggle}
+            display={{ base: 'none', lg: 'block' }}
+          />
           <RepeatIcon />
           <Avatar
             size={'sm'}

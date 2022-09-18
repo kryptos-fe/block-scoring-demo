@@ -1,15 +1,14 @@
-import { Flex, Link } from '@chakra-ui/react';
-import CustomImage from '@/components/CustomImage/index.js';
-import { icons } from '@/constants/index.js';
 import React from 'react';
+import Image from 'next/image';
+import { Box, Flex, Link } from '@chakra-ui/react';
 
 export const NavItem = ({ icon, children, ...rest }) => {
   return (
-    <Link href='#' style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
+    <Link href="#" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
       <Flex
-        align='center'
-        role='group'
-        cursor='pointer'
+        align="center"
+        role="group"
+        cursor="pointer"
         h={'42px'}
         _hover={{
           color: 'white',
@@ -20,7 +19,9 @@ export const NavItem = ({ icon, children, ...rest }) => {
           padding: '9px 5px 9px 15px',
         }}
         {...rest}>
-        <CustomImage width={'14px'} height={'14px'} isFill src={icon} />
+        <Box sx={{ cursor: 'pointer' }} width={'14px'} height={'14px'} position={'relative'}>
+          <Image src={icon} layout="fill" objectPosition="center" objectFit={'cover'} alt="" />
+        </Box>
         {children}
       </Flex>
     </Link>
