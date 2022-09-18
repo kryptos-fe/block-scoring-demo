@@ -10,28 +10,33 @@ import {
   AiFillDatabase,
   AiTwotoneFire,
   AiFillPieChart,
-  AiOutlineBook,
-  AiOutlineFund,
   AiFillVideoCamera,
-  AiOutlineCalculator,
+  AiTwotonePieChart,
+  AiTwotoneFund,
+  AiTwotoneBook,
+  AiFillCalculator,
+  AiFillContacts,
+  AiFillSetting,
+  AiFillMail,
+  AiTwotoneWallet,
 } from 'react-icons/ai';
 
 const MainMenu = [
   { name: 'Blockscoring Rated', icon: AiFillDatabase },
   { name: 'Hot Cryptos', icon: AiTwotoneFire },
   { name: 'Cryptos Portfolio', icon: AiFillPieChart },
-  { name: 'Investment', icon: AiOutlineFund, tag: 'New' },
-  { name: 'Bookmarks', icon: AiOutlineBook },
+  { name: 'Investment', icon: AiTwotoneFund, tag: 'New' },
+  { name: 'Bookmarks', icon: AiTwotoneBook },
   { name: 'Highlight', icon: AiFillVideoCamera },
-  { name: 'Methodology', icon: AiOutlineCalculator },
+  { name: 'Methodology', icon: AiFillCalculator },
 ];
 
 const SubMenu = [
-  { name: 'Submit Project', icon: AiFillHome },
-  { name: 'About Blockscoring', icon: AiFillHome },
-  { name: 'APIs', icon: AiFillHome },
-  { name: 'Help & Support', icon: AiFillHome },
-  { name: 'Donate', icon: AiFillHome },
+  { name: 'Submit Project', icon: AiTwotonePieChart, color: '#04b962' },
+  { name: 'About Blockscoring', icon: AiFillContacts, color: '#14b6ff' },
+  { name: 'APIs', icon: AiFillSetting, color: '#04b962' },
+  { name: 'Help & Support', icon: AiFillMail, color: '#f43643' },
+  { name: 'Donate', icon: AiTwotoneWallet, color: '#ff8800' },
 ];
 
 interface SidebarProps {
@@ -94,7 +99,7 @@ export const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
           Sub
         </Text>
         {SubMenu.map((link) => (
-          <NavItem key={link.name} icon={link.icon}>
+          <NavItem key={link.name} icon={link.icon} color={link?.color}>
             <Text ml={2.5} color={'white'} fontSize={14}>
               {link.name}
             </Text>

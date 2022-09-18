@@ -2,7 +2,7 @@ import React from 'react';
 import { Box, Flex, Link } from '@chakra-ui/react';
 import { Icon } from '@chakra-ui/icons';
 
-export const NavItem = ({ icon, tag = '', children, ...rest }) => {
+export const NavItem = ({ icon, color, tag = '', children, ...rest }) => {
   return (
     <Link href="#" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
       <Flex
@@ -29,6 +29,7 @@ export const NavItem = ({ icon, tag = '', children, ...rest }) => {
             width={'14px'}
             height={'14px'}
             display={{ base: 'none', lg: 'block' }}
+            color={color ? color : null}
           />
         </Box>
         {children}
