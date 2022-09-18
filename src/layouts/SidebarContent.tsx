@@ -6,27 +6,55 @@ import { icons } from '@/constants/index.js';
 import { SmallCloseIcon } from '@chakra-ui/icons';
 import { NavItem } from '@/layouts/NavItem.js';
 
-export const SidebarContent = ({ linkItems, onClose, ...rest }) => {
+const MainMenu = [
+  { name: 'Blockscoring Rated', icon: icons.dashboard },
+  { name: 'Hot Cryptos', icon: icons.logo },
+  { name: 'Cryptos Portfolio', icon: icons.logo },
+  { name: 'Investment', icon: icons.logo },
+  { name: 'Bookmarks', icon: icons.logo },
+  { name: 'Highlight', icon: icons.logo },
+  { name: 'Methodology', icon: icons.logo },
+];
+
+const SubMenu = [
+  { name: 'Submit Project', icon: icons.dashboard },
+  { name: 'About Blockscoring', icon: icons.logo },
+  { name: 'APIs', icon: icons.logo },
+  { name: 'Help & Support', icon: icons.logo },
+  { name: 'Donate', icon: icons.logo },
+];
+
+interface SidebarProps {
+  onClose: () => void;
+}
+
+export const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   const router = useRouter();
   return (
     <Box
-      transition='display 3s'
+      transition="display 3s"
       bg={'sidebarBackground'}
       w={{ base: '100%', lg: 60 }}
-      pos='fixed'
+      pos="fixed"
       zIndex={1000}
-      h='full'
+      h="full"
       {...rest}>
       <Box w={'100%'} h={'100%'} pos={'relative'}>
         <Flex
-          h='16'
+          h="16"
           cursor={'pointer'}
-          alignItems='center'
-          mx='8'
-          justifyContent='center'
+          alignItems="center"
+          mx="8"
+          justifyContent="center"
           onClick={() => router.push('/')}>
-          <CustomImage src={icons.logo} width={35} height={35} isFill />
-          <Text ml={'5px'} fontSize='lg' fontWeight='bold' color={'white'}>
+          <CustomImage
+            // @ts-ignore
+            src={icons.logo}
+            width={35}
+            height={35}
+            isFill
+          />
+          <Text ml={'5px'} fontSize="lg" fontWeight="bold" color={'white'}>
             Blockscoring
           </Text>
         </Flex>
@@ -40,7 +68,7 @@ export const SidebarContent = ({ linkItems, onClose, ...rest }) => {
           }}>
           Main
         </Text>
-        {linkItems.map((link) => (
+        {MainMenu.map((link) => (
           <NavItem key={link.name} icon={link.icon}>
             <Text ml={2.5} color={'white'} fontSize={14}>
               {link.name}
@@ -56,7 +84,7 @@ export const SidebarContent = ({ linkItems, onClose, ...rest }) => {
           }}>
           Sub
         </Text>
-        {linkItems.map((link) => (
+        {SubMenu.map((link) => (
           <NavItem key={link.name} icon={link.icon}>
             <Text ml={2.5} color={'white'} fontSize={14}>
               {link.name}
