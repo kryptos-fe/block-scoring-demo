@@ -10,6 +10,9 @@ import 'swiper/css/grid';
 import 'swiper/css/pagination';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 interface AppProps {
   Component: any;
@@ -21,13 +24,15 @@ function App({ Component, pageProps, router }: AppProps) {
   const Layout = Component.Layout ?? EmptyLayout;
   useScrollRestoration(router);
   return (
-    <ChakraProvider theme={theme}>
-      <AppProvider>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </AppProvider>
-    </ChakraProvider>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider theme={theme}>
+        <AppProvider>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </AppProvider>
+      </ChakraProvider>
+    </QueryClientProvider>
   );
 }
 

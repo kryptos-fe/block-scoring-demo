@@ -1,6 +1,8 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { AppConfig } from '@/config';
 
+console.log('App Config', AppConfig.ApiEndpoint);
+
 const instance = axios.create({
   baseURL: AppConfig.ApiEndpoint,
   timeout: 10000,
@@ -48,6 +50,7 @@ const handleSuccess = (response: AxiosResponse) => {
     };
   } else {
     return {
+      data: null,
       status: false,
     };
   }
@@ -55,6 +58,7 @@ const handleSuccess = (response: AxiosResponse) => {
 
 const handleError = (error: AxiosError) => {
   return {
+    data: null,
     status: false,
     statusCode: error?.response?.status,
     error: error?.response?.data,

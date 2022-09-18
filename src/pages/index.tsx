@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { DefaultLayout } from '@/layouts/DefaultLayout.js';
 import { Box, Grid } from '@chakra-ui/react';
 
-import { CardToken } from '@/modules/Home/components/CardToken/index.js';
+import { CardToken, Token } from '@/modules/Home/components/CardToken';
 import HomeHeader from '@/modules/Home/components/HomeHeader';
 import BreakContent from '@/modules/Home/components/BreakContent';
+import { useQuery } from '@tanstack/react-query';
+import Axios from '@/services/axios';
 
 const HomePage = () => {
+  const getOverview = useCallback(async () => {
+    const result = await Axios.Get('/forward', {
+      url: 'https://scoring.trainery.live/v2/ratings',
+    });
+    return result;
+  }, []);
+
+  const { data } = useQuery(['overview'], getOverview);
+
+  const tokenList: Array<Token> = data?.data?.data || [];
+  console.log('RESULT', tokenList);
+
+  const firstList: Array<Token> = tokenList?.slice(0, 8) || [];
+  const secondList: Array<Token> = tokenList?.slice(8) || [];
+
   return (
     <Box>
       <HomeHeader />
@@ -21,14 +38,9 @@ const HomePage = () => {
         gap={{ base: 2, md: 4 }}
         p={{ base: 2, md: 4 }}
         bg={'header'}>
-        <CardToken title={'Bitcoin'} rank={1} />
-        <CardToken title={'Bitcoin'} rank={1} />
-        <CardToken title={'Bitcoin'} rank={1} />
-        <CardToken title={'Bitcoin'} rank={1} />
-        <CardToken title={'Bitcoin'} rank={1} />
-        <CardToken title={'Bitcoin'} rank={1} />
-        <CardToken title={'Bitcoin'} rank={1} />
-        <CardToken title={'Bitcoin'} rank={1} />
+        {firstList?.map((token) => {
+          return <CardToken token={token} key={token.id} />;
+        })}
       </Grid>
       <BreakContent />
       <Grid
@@ -36,17 +48,9 @@ const HomePage = () => {
         gap={4}
         p={4}
         bg={'header'}>
-        <CardToken title={'Bitcoin'} rank={1} />
-        <CardToken title={'Bitcoin'} rank={1} />
-        <CardToken title={'Bitcoin'} rank={1} />
-        <CardToken title={'Bitcoin'} rank={1} />
-        <CardToken title={'Bitcoin'} rank={1} />
-        <CardToken title={'Bitcoin'} rank={1} />
-        <CardToken title={'Bitcoin'} rank={1} />
-        <CardToken title={'Bitcoin'} rank={1} />
-        <CardToken title={'Bitcoin'} rank={1} />
-        <CardToken title={'Bitcoin'} rank={1} />
-        <CardToken title={'Bitcoin'} rank={1} />
+        {secondList?.map((token) => {
+          return <CardToken key={token.id} token={token} />;
+        })}
       </Grid>
     </Box>
   );

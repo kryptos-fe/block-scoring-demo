@@ -1,3 +1,3 @@
 export const AppConfig = {
-  ApiEndpoint: process.env.REACT_API_ENDPOINT,
+  ApiEndpoint: 'https://dev-crawler-api.trainery.live/',
 };
