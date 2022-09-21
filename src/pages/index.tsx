@@ -24,9 +24,8 @@ const HomePage = () => {
       ...token,
       image: coins[index].image,
       tokenName: coins[index].name,
-      rank: index,
+      rank: index + 1,
     })) || [];
-  console.log('RESULT', tokenList);
 
   const firstList: Array<Token> = tokenList?.slice(0, 8) || [];
   const secondList: Array<Token> = tokenList?.slice(8) || [];

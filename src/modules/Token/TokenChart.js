@@ -9,7 +9,7 @@ const Chart = dynamic(() => import('react-apexcharts'), {
   ssr: false,
 });
 
-export const TokenChart = () => {
+export const TokenChart = ({ token }) => {
   const optionsDemo = {
     chart: {
       id: 'area-datetime',
@@ -372,10 +372,10 @@ export const TokenChart = () => {
       <Box w={'100%'} p={4}>
         <Box>
           <HStack spacing={2} p={4}>
-            <CustomImage src={icons.bitcoin} width={'56px'} height={'56px'} mr={2} />
+            {token.image ? <CustomImage src={token.image} width={'56px'} height={'56px'} mr={2} /> : null}
             <Box>
               <Text color={'white'} fontSize={16} fontWeight={'bold'} opacity={0.85}>
-                Bitcoin/USDT
+                {token.tokenName}/USDT
               </Text>
               <HStack spacing={2} alignItems={'baseline'}>
                 <Text color={'white'} fontSize={18} fontWeight={'bold'} opacity={0.85}>

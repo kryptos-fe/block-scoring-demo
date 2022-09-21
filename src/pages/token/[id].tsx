@@ -2,7 +2,7 @@ import React, { useCallback } from 'react';
 import { DefaultLayout } from '@/layouts/DefaultLayout.js';
 import { Box, Divider, Flex, Grid, GridItem, Text } from '@chakra-ui/react';
 
-import { Info } from '@/modules/Token/Info.js';
+import { Info } from '@/modules/Token/Info';
 import { GithubChart } from '@/modules/Token/GithubChart.js';
 import { icons } from '@/constants';
 import { TokenChart } from '@/modules/Token/TokenChart';
@@ -28,12 +28,10 @@ const TokenPage = () => {
 
   const { id } = router.query;
   const { data } = useQuery(['detail', id], getDetail);
-  console.log('Detail', data);
   const tokenData = data?.data || {};
 
   const index: number = Number(id) - 1;
   const coin = coins[index] ? coins[index] : {};
-  console.log('Coin', coin);
 
   const token: Token = {
     ...tokenData,
@@ -41,6 +39,12 @@ const TokenPage = () => {
   };
 
   token.tokenName = token.name;
+
+  console.log('Token', token);
+
+  const image = token?.image || '';
+
+  console.log('image', image);
 
   return (
     <Box>
@@ -56,7 +60,7 @@ const TokenPage = () => {
         templateColumns={{ base: 'repeat(1,1fr)', md: 'repeat(2,1fr)', lg: 'repeat(3,1fr)' }}
         gap={{ base: 2, md: 4 }}
         pt={14}>
-        <Info />
+        <Info token={token} />
         <GithubChart />
       </Grid>
       <Grid
@@ -78,7 +82,7 @@ const TokenPage = () => {
                 <Text color={'secondary'} fontSize={14} fontWeight={'bold'}>
                   Marketing & PR
                 </Text>
-                <NewImage src={icons.info as any} width={15} height={15} />
+                {image?.length > 0 ? <NewImage src={image} width={15} height={15} /> : null}
               </Flex>
             </GridItem>
             <GridItem h={112} display={'flex'} flexDirection={'column'} p={4} justifyContent={'space-between'}>
@@ -90,7 +94,7 @@ const TokenPage = () => {
                 <Text color={'secondary'} fontSize={14} fontWeight={'bold'}>
                   Partnership
                 </Text>
-                <NewImage src={icons.info as any} width={15} height={15} />
+                {image?.length > 0 ? <NewImage src={image} width={15} height={15} /> : null}
               </Flex>
             </GridItem>
             <GridItem h={112} display={'flex'} flexDirection={'column'} p={4} justifyContent={'space-between'}>
@@ -102,11 +106,12 @@ const TokenPage = () => {
                 <Text color={'secondary'} fontSize={14} fontWeight={'bold'}>
                   Uniqueness
                 </Text>
+                {image?.length > 0 ? <NewImage src={image} width={15} height={15} /> : null}
                 <NewImage src={icons.info as any} width={15} height={15} />
               </Flex>
             </GridItem>
           </Grid>
-          <TokenChart />
+          <TokenChart token={token} />
         </GridItem>
         <GridItem colSpan={1} display={'flex'} flexDirection={'column'}>
           <GoogleTrends />

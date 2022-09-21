@@ -17,6 +17,14 @@ const CustomImage = forwardRef(function CustomImage({ isFill, width, height, src
   );
 });
 
+export const CustomImage2 = function ({ isFill, width, height, src, position, ...props }) {
+  return (
+    <Box sx={{ cursor: 'pointer' }} {...props} width={width} height={height} position={position || 'relative'}>
+      <Image src={src} layout="fill" objectPosition="center" objectFit={isFill ? 'cover' : 'contain'} alt="" />
+    </Box>
+  );
+};
+
 CustomImage.defaultProps = {
   width: '100%',
   height: '100%',
