@@ -12,26 +12,41 @@ import { BestBuy } from '@/modules/Token/BestBuy.js';
 import NewImage from '@/components/NewImage';
 import Axios from '@/services/axios';
 import { useRouter } from 'next/router';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { Token } from '@/modules/Home/components/CardToken';
+import { coins } from '@/config/coins';
 
 const TokenPage = () => {
   const router = useRouter();
-  const { pid } = router.query;
 
-  const getDetail = useCallback(async () => {
+  const getDetail = async () => {
     const result = await Axios.Get('/forward', {
-      url: `https://scoring.trainery.live/v2/${pid}`,
+      url: `https://scoring.trainery.live/v2/rating/${id}`,
     });
     return result;
-  }, [pid]);
+  };
 
-  const { data } = useQuery(['detail'], getDetail);
+  const { id } = router.query;
+  const { data } = useQuery(['detail', id], getDetail);
+  console.log('Detail', data);
+  const tokenData = data?.data || {};
+
+  const index: number = Number(id) - 1;
+  const coin = coins[index] ? coins[index] : {};
+  console.log('Coin', coin);
+
+  const token: Token = {
+    ...tokenData,
+    ...coin,
+  };
+
+  token.tokenName = token.name;
 
   return (
     <Box>
       <Box textAlign={'center'} p={{ base: 2, md: 4 }}>
         <Text color={'white'} fontSize={'lg'}>
-          Bitcoin Review & Analysis
+          {token.tokenName} Review & Analysis
         </Text>
         <Text color={'blue'} fontSize={'sm'}>
           Bringing human & machine intelligence for impartial crypto analysis.
