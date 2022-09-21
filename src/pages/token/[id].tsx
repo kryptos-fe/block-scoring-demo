@@ -1,18 +1,32 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { DefaultLayout } from '@/layouts/DefaultLayout.js';
 import { Box, Divider, Flex, Grid, GridItem, Text } from '@chakra-ui/react';
 
 import { Info } from '@/modules/Token/Info.js';
 import { GithubChart } from '@/modules/Token/GithubChart.js';
-import CustomImage from '@/components/CustomImage';
 import { icons } from '@/constants';
 import { TokenChart } from '@/modules/Token/TokenChart';
 import { GoogleTrends } from '@/modules/Token/GoogleTrends.js';
 import { Statistics } from '@/modules/Token/Statistics.js';
 import { BestBuy } from '@/modules/Token/BestBuy.js';
 import NewImage from '@/components/NewImage';
+import Axios from '@/services/axios';
+import { useRouter } from 'next/router';
+import { useQuery } from '@tanstack/react-query';
 
 const TokenPage = () => {
+  const router = useRouter();
+  const { pid } = router.query;
+
+  const getDetail = useCallback(async () => {
+    const result = await Axios.Get('/forward', {
+      url: `https://scoring.trainery.live/v2/${pid}`,
+    });
+    return result;
+  }, [pid]);
+
+  const { data } = useQuery(['detail'], getDetail);
+
   return (
     <Box>
       <Box textAlign={'center'} p={{ base: 2, md: 4 }}>

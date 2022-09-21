@@ -7,6 +7,74 @@ import HomeHeader from '@/modules/Home/components/HomeHeader';
 import BreakContent from '@/modules/Home/components/BreakContent';
 import { useQuery } from '@tanstack/react-query';
 import Axios from '@/services/axios';
+import { icons } from '@/constants';
+
+const coins = [
+  {
+    name: 'Bit Coin',
+    image: icons.coins.bitcoin,
+  },
+  {
+    name: 'Etherum',
+    image: icons.coins.etherum,
+  },
+  {
+    name: 'ChainLink',
+    image: icons.coins.chainlink,
+  },
+  {
+    name: 'Polkadot',
+    image: icons.coins.polkadot,
+  },
+  {
+    name: 'Hedera Hashgraph',
+    image: icons.coins.hedera,
+  },
+  {
+    name: 'Energy Web Token',
+    image: icons.coins.energyWebToken,
+  },
+  {
+    name: 'The Graph',
+    image: icons.coins.theGraph,
+  },
+  {
+    name: 'Enjin Coin',
+    image: icons.coins.enjin,
+  },
+  {
+    name: 'Ocean Protocol',
+    image: icons.coins.oceanProtocol,
+  },
+  {
+    name: 'Unibright',
+    image: icons.coins.uniBright,
+  },
+  {
+    name: 'Theta Network',
+    image: icons.coins.thetaNetwork,
+  },
+  {
+    name: 'Flow',
+    image: icons.coins.flow,
+  },
+  {
+    name: 'Binance Coin',
+    image: icons.coins.binanceCoin,
+  },
+  {
+    name: 'Compound',
+    image: icons.coins.compound,
+  },
+  {
+    name: 'Stellar',
+    image: icons.coins.stela,
+  },
+  {
+    name: 'Blockstack',
+    image: icons.coins.blockstack,
+  },
+];
 
 const HomePage = () => {
   const getOverview = useCallback(async () => {
@@ -18,7 +86,13 @@ const HomePage = () => {
 
   const { data } = useQuery(['overview'], getOverview);
 
-  const tokenList: Array<Token> = data?.data?.data || [];
+  const tokenList: Array<Token> =
+    data?.data?.data?.map((token: Token, index: number) => ({
+      ...token,
+      image: coins[index].image,
+      tokenName: coins[index].name,
+      rank: index,
+    })) || [];
   console.log('RESULT', tokenList);
 
   const firstList: Array<Token> = tokenList?.slice(0, 8) || [];

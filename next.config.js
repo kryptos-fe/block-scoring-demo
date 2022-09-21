@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['*', '632466.sgp1.digitaloceanspaces.com'],
+    domains: ['assets.coingecko.com', 'blocknomy.net'],
   },
   experimental: {
     scrollRestoration: false,

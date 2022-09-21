@@ -23,6 +23,9 @@ export interface Token {
   techRating: TechRating;
   socialRating: SocialRating;
   investorRating: InvestorRating;
+  image?: string;
+  tokenName?: string;
+  rank?: number;
 }
 
 interface TokenCardProps {
@@ -42,18 +45,18 @@ export const CardToken = ({ token }: TokenCardProps) => {
         p={4}
         h={154}
         onClick={() => {
-          router.push('/token/1');
+          router.push(`/token/${token.id}`);
         }}>
         <Flex justifyContent={'space-between'} alignItems={'center'}>
           <Text color={'primary'} fontSize={'lg'}>
-            {token.name}
+            {token.tokenName}
           </Text>
-          <NewImage src={icons.bitcoin as any} width={30} height={30} />
+          <NewImage src={token.image || ''} width={30} height={30} />
         </Flex>
         <Divider sx={{ opacity: 0.4 }} />
         <Flex justifyContent={'space-between'} alignItems={'center'}>
           <Text color={'secondary'} fontSize={'sm'}>
-            RANK: {token.id}
+            RANK: {token.rank}
           </Text>
           <Button leftIcon={<ViewIcon />} variant="outline" w={120} h={'36px'}>
             <Text fontSize={'xs'}>View score</Text>
