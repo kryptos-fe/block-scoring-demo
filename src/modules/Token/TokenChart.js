@@ -16,11 +16,11 @@ export const TokenChart = ({ token, setMinPrice, setMaxPrice }) => {
     let data = [];
     for (let i = 1; i <= 120; i++) {
       if (i <= 40) {
-        data.push([date + 3 * 86400000 * i, getRandomInt(18000, 18300)]);
+        data.push([date + 3 * 86400000 * i, getRandomInt(17000, 18000)]);
       } else if (i > 40 && i <= 80) {
-        data.push([date + 3 * 86400000 * i, getRandomInt(18300, 18600)]);
+        data.push([date + 3 * 86400000 * i, getRandomInt(18000, 19000)]);
       } else {
-        data.push([date + 3 * 86400000 * i, getRandomInt(18600, 19000)]);
+        data.push([date + 3 * 86400000 * i, getRandomInt(19000, 20000)]);
       }
     }
     return data;

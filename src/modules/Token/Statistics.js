@@ -34,7 +34,7 @@ export const Statistics = ({ minPrice, maxPrice }) => {
           />
         </GridItem>
         <GridItem h={'80px'} display={'flex'} justifyContent={'center'} alignItems={'center'} w="100%">
-          <Text color={'primary'}>{minPrice}$</Text>
+          <Text color={'red'}>{minPrice}$</Text>
           <CustomImage ml={1} width={'12px'} height={'18px'} src={icons.down} />
         </GridItem>
       </Grid>

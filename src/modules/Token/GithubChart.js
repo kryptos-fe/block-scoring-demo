@@ -15,7 +15,7 @@ export const GithubChart = () => {
   const generateChartData = (categories) => {
     let data = [];
     for (let i = 0; i < categories.length; i++) {
-      data.push(getRandomInt(0, 7000));
+      data.push(getRandomInt(2000, 7000));
     }
     return data;
   };
