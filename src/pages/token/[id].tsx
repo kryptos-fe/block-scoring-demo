@@ -47,6 +47,8 @@ const TokenPage = () => {
   console.log('image', image);
 
   const [progress, setProgress] = useState<{ title: string; progress: number }[]>([]);
+  const [minPrice, setMinPrice] = useState<number>(0);
+  const [maxPrice, setMaxPrice] = useState<number>(0);
 
   useEffect(() => {
     const dataProgress: { title: string; progress: number }[] = [
@@ -110,11 +112,11 @@ const TokenPage = () => {
                 );
               })}
           </Grid>
-          <TokenChart token={token} />
+          <TokenChart setMaxPrice={setMaxPrice} setMinPrice={setMinPrice} token={token} />
         </GridItem>
         <GridItem colSpan={1} display={'flex'} flexDirection={'column'}>
           <GoogleTrends />
-          <Statistics />
+          <Statistics minPrice={minPrice} maxPrice={maxPrice} />
           <BestBuy />
         </GridItem>
       </Grid>

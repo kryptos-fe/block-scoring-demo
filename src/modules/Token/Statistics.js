@@ -4,7 +4,7 @@ import CustomImage from '@/components/CustomImage/index.js';
 import { icons } from '@/constants/index.js';
 import theme from '@/theme/theme.js';
 
-export const Statistics = () => {
+export const Statistics = ({ minPrice, maxPrice }) => {
   return (
     <Box mt={4} bg="mainBackground" pos={'relative'} boxShadow={'0 2px 10px rgb(0 0 0 / 10%)'}>
       <Flex justifyContent={'space-between'} h={46} px={3} py={5}>
@@ -22,7 +22,7 @@ export const Statistics = () => {
           alignItems={'center'}
           w="100%"
           h={'80px'}>
-          <Text color={'primary'}>69000$</Text>
+          <Text color={'primary'}>{maxPrice}$</Text>
           <CustomImage
             ml={1}
             width={'12px'}
@@ -34,7 +34,7 @@ export const Statistics = () => {
           />
         </GridItem>
         <GridItem h={'80px'} display={'flex'} justifyContent={'center'} alignItems={'center'} w="100%">
-          <Text color={'primary'}>20000$</Text>
+          <Text color={'primary'}>{minPrice}$</Text>
           <CustomImage ml={1} width={'12px'} height={'18px'} src={icons.down} />
         </GridItem>
       </Grid>

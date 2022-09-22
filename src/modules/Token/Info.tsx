@@ -65,9 +65,9 @@ export const Info = ({ token }: InfoProps) => {
         </HStack>
       </Box>
       {medias &&
-        medias.map((item) => {
+        medias.map((item, index) => {
           return (
-            <>
+            <React.Fragment key={index}>
               <Divider sx={{ opacity: 0.4 }} />
               <Flex alignItems={'center'} py={5}>
                 <NewImage src={item.icon as any} width={30} height={30} />
@@ -84,7 +84,7 @@ export const Info = ({ token }: InfoProps) => {
                 </Box>
                 <NewImage src={icons.info as any} width={15} height={15} />
               </Flex>
-            </>
+            </React.Fragment>
           );
         })}
     </GridItem>

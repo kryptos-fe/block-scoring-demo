@@ -88,7 +88,7 @@ export const GithubChart = () => {
 
       <Divider sx={{ opacity: 0.4 }} />
       <Box w={'100%'} height={300} p={5}>
-        <Chart options={options} series={series} type="area" width="100%" height={260} />
+        {series && options && <Chart options={options} series={series} type="area" width="100%" height={260} />}
       </Box>
       <Divider sx={{ opacity: 0.4 }} />
       <Flex px={3} py={5} height={85} alignItems={'center'}>

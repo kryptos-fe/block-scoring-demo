@@ -11,8 +11,7 @@ const Chart = dynamic(() => import('react-apexcharts'), {
   ssr: false,
 });
 
-export const TokenChart = ({ token }) => {
-  console.log(new Date('01 Mar 2012').getTime());
+export const TokenChart = ({ token, setMinPrice, setMaxPrice }) => {
   const generateData = (date) => {
     let data = [];
     for (let i = 1; i <= 120; i++) {
@@ -29,9 +28,30 @@ export const TokenChart = ({ token }) => {
 
   const [options, setOptions] = useState(null);
   const [series, setSeries] = useState(null);
+  const [price, setPrice] = useState(0);
+  const [valueChange, setValueChange] = useState(0);
+  const [percentChange, setPercentChange] = useState(0);
 
   useEffect(() => {
     const date = moment().subtract(365, 'days');
+
+    const chartData = generateData(date);
+
+    setPrice(chartData[chartData.length - 1][1]);
+
+    setValueChange(chartData[chartData.length - 1][1] - chartData[chartData.length - 2][1]);
+    setPercentChange(
+      (chartData[chartData.length - 1][1] - chartData[chartData.length - 2][1]) / chartData[chartData.length - 2][1]
+    );
+
+    let prices = [];
+
+    chartData.forEach((item, index) => {
+      prices.push(item[1]);
+    });
+
+    setMinPrice(Math.min(...prices));
+    setMaxPrice(Math.max(...prices));
     const optionsDemo = {
       chart: {
         id: 'area-datetime',
@@ -102,7 +122,7 @@ export const TokenChart = ({ token }) => {
     const seriesDemo = [
       {
         name: 'Token',
-        data: generateData(date),
+        data: chartData,
       },
     ];
     setSeries(seriesDemo);
@@ -127,18 +147,20 @@ export const TokenChart = ({ token }) => {
               </Text>
               <HStack spacing={2} alignItems={'baseline'}>
                 <Text color={'white'} fontSize={18} fontWeight={'bold'} opacity={0.85}>
-                  20000.000
+                  {price}
                 </Text>
                 <Text color={'white'} fontSize={12} fontWeight={'bold'} opacity={0.85}>
                   USDT
                 </Text>
-                <Text color={'red'} fontSize={16} fontWeight={'bold'} opacity={0.85}>
-                  -60.00
+                <Text color={valueChange > 0 ? 'primary' : 'red'} fontSize={16} fontWeight={'bold'} opacity={0.85}>
+                  {valueChange > 0 && '+'}
+                  {valueChange}
                 </Text>
-                <Text color={'red'} fontSize={16} fontWeight={'bold'} opacity={0.85}>
-                  -0.50%
+                <Text color={percentChange > 0 ? 'primary' : 'red'} fontSize={16} fontWeight={'bold'} opacity={0.85}>
+                  {percentChange > 0 && '+'}
+                  {percentChange.toFixed(3)}%
                 </Text>
-                <Text color={'red'} fontSize={12} fontWeight={'bold'} opacity={0.85}>
+                <Text color={valueChange > 0 ? 'primary' : 'red'} fontSize={12} fontWeight={'bold'} opacity={0.85}>
                   Today
                 </Text>
               </HStack>
@@ -219,7 +241,7 @@ export const TokenChart = ({ token }) => {
               </Text>
             </Flex>
           </HStack>
-          <Chart options={options} series={series} type="area" width="100%" height={260} />
+          {series && options && <Chart options={options} series={series} type="area" width="100%" height={260} />}
         </Box>
       </Box>
     </Box>
