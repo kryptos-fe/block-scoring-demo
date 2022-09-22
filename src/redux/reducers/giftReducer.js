@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { put, takeLatest } from 'redux-saga/effects';
 import giftApi from '@/redux/api/giftApi.js';
-import { scrollToTop } from '@/utils/index.js';
-import { DEFAULT_PAGINATION, GIFT_TYPE_MAGIC } from '@/constants/index.js';
+import { scrollToTop } from '@/utils/index.ts';
+import { DEFAULT_PAGINATION, GIFT_TYPE_MAGIC } from '@/constants/index.ts';
 
 const initialState = {
   loading: false,

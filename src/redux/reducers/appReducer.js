@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { axiosClient } from '@/utils/index.js';
+import { axiosClient } from '@/utils/index.ts';
 import { categoryActions } from '@/redux/reducers/categoryReducer.js';
 import { all, put, takeLatest } from 'redux-saga/effects';
 import { locationActions } from '@/redux/reducers/locationReducer.js';
 import { myGiftActions } from '@/redux/reducers/myGiftReducer.js';
-import { GIFT_TYPE_MAGIC } from '@/constants/index.js';
+import { GIFT_TYPE_MAGIC } from '@/constants/index.ts';
 import moment from 'moment';
 
 const initialState = {

@@ -58,7 +58,7 @@ export const CardToken = ({ token }: TokenCardProps) => {
           <Text color={'secondary'} fontSize={'sm'}>
             RANK: {token.rank}
           </Text>
-          <Button leftIcon={<ViewIcon />} variant="outline" w={120} h={'36px'}>
+          <Button leftIcon={<ViewIcon />} variant="outlined" w={120} h={'36px'}>
             <Text fontSize={'xs'}>View score</Text>
           </Button>
         </Flex>

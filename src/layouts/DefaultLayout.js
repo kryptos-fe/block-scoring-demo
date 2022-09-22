@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Flex } from '@chakra-ui/react';
-import { icons } from '@/constants/index.js';
+import { Box } from '@chakra-ui/react';
 import { SidebarContent } from '@/layouts/SidebarContent';
 import { MobileNav } from '@/layouts/MobileNav';
 import { Footer } from '@/layouts/Footer.js';

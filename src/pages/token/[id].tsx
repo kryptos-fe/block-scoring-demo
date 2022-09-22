@@ -1,10 +1,9 @@
-import React, { useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { DefaultLayout } from '@/layouts/DefaultLayout.js';
 import { Box, Divider, Flex, Grid, GridItem, Text } from '@chakra-ui/react';
 
 import { Info } from '@/modules/Token/Info';
 import { GithubChart } from '@/modules/Token/GithubChart.js';
-import { icons } from '@/constants';
 import { TokenChart } from '@/modules/Token/TokenChart';
 import { GoogleTrends } from '@/modules/Token/GoogleTrends.js';
 import { Statistics } from '@/modules/Token/Statistics.js';
@@ -12,9 +11,10 @@ import { BestBuy } from '@/modules/Token/BestBuy.js';
 import NewImage from '@/components/NewImage';
 import Axios from '@/services/axios';
 import { useRouter } from 'next/router';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { Token } from '@/modules/Home/components/CardToken';
 import { coins } from '@/config/coins';
+import { getRandomInt } from '@/utils';
 
 const TokenPage = () => {
   const router = useRouter();
@@ -46,6 +46,19 @@ const TokenPage = () => {
 
   console.log('image', image);
 
+  const [progress, setProgress] = useState<{ title: string; progress: number }[]>([]);
+
+  useEffect(() => {
+    const dataProgress: { title: string; progress: number }[] = [
+      { title: 'Marketing & PR', progress: getRandomInt(10, 100) },
+      {
+        title: 'Partnerships',
+        progress: getRandomInt(10, 100),
+      },
+      { title: 'Uniqueness', progress: getRandomInt(70, 100) },
+    ];
+    setProgress(dataProgress);
+  }, []);
   return (
     <Box>
       <Box textAlign={'center'} p={{ base: 2, md: 4 }}>
@@ -73,43 +86,29 @@ const TokenPage = () => {
             templateColumns={{ base: 'repeat(1,1fr)', md: 'repeat(2,1fr)', lg: 'repeat(3,1fr)' }}
             gap={4}
             w={'100%'}>
-            <GridItem h={112} display={'flex'} flexDirection={'column'} p={4} justifyContent={'space-between'}>
-              <Text color={'white'} fontWeight={'bold'} fontSize={14}>
-                10%
-              </Text>
-              <Divider opacity={0.15} />
-              <Flex justifyContent={'space-between'}>
-                <Text color={'secondary'} fontSize={14} fontWeight={'bold'}>
-                  Marketing & PR
-                </Text>
-                {image?.length > 0 ? <NewImage src={image} width={15} height={15} /> : null}
-              </Flex>
-            </GridItem>
-            <GridItem h={112} display={'flex'} flexDirection={'column'} p={4} justifyContent={'space-between'}>
-              <Text color={'white'} fontWeight={'bold'} fontSize={14}>
-                10%
-              </Text>
-              <Divider opacity={0.15} />
-              <Flex justifyContent={'space-between'}>
-                <Text color={'secondary'} fontSize={14} fontWeight={'bold'}>
-                  Partnership
-                </Text>
-                {image?.length > 0 ? <NewImage src={image} width={15} height={15} /> : null}
-              </Flex>
-            </GridItem>
-            <GridItem h={112} display={'flex'} flexDirection={'column'} p={4} justifyContent={'space-between'}>
-              <Text color={'white'} fontWeight={'bold'} fontSize={14}>
-                10%
-              </Text>
-              <Divider opacity={0.15} />
-              <Flex justifyContent={'space-between'}>
-                <Text color={'secondary'} fontSize={14} fontWeight={'bold'}>
-                  Uniqueness
-                </Text>
-                {image?.length > 0 ? <NewImage src={image} width={15} height={15} /> : null}
-                <NewImage src={icons.info as any} width={15} height={15} />
-              </Flex>
-            </GridItem>
+            {progress &&
+              progress.map((item, index) => {
+                return (
+                  <GridItem
+                    key={index}
+                    h={112}
+                    display={'flex'}
+                    flexDirection={'column'}
+                    p={4}
+                    justifyContent={'space-between'}>
+                    <Text color={'white'} fontWeight={'bold'} fontSize={14}>
+                      {item.progress}%
+                    </Text>
+                    <Divider opacity={0.15} />
+                    <Flex justifyContent={'space-between'}>
+                      <Text color={'secondary'} fontSize={14} fontWeight={'bold'}>
+                        {item.title}
+                      </Text>
+                      {image?.length > 0 ? <NewImage src={image} width={15} height={15} /> : null}
+                    </Flex>
+                  </GridItem>
+                );
+              })}
           </Grid>
           <TokenChart token={token} />
         </GridItem>

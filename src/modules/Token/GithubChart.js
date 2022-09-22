@@ -1,64 +1,78 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, Divider, Flex, GridItem, Text } from '@chakra-ui/react';
 import { icons } from '@/constants/index.js';
 import CustomImage from '@/components/CustomImage/index.js';
 import dynamic from 'next/dynamic';
-import theme from '@/theme/theme.js';
+import { getRandomInt } from '@/utils';
 
 const Chart = dynamic(() => import('react-apexcharts'), {
   ssr: false,
 });
 
 export const GithubChart = () => {
-  const optionsDemo = {
-    chart: {
-      id: 'area',
-      foreColor: '#ffffff',
-      zoom: {
-        enabled: false,
-      },
-    },
-    xaxis: {
-      categories: ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr'],
-    },
-    tooltip: {
-      enabled: false,
-    },
-    dataLabels: {
-      enabled: false,
-    },
-    title: {
-      text: 'Github Events',
-      align: 'left',
-      style: {
-        fontSize: 14,
-        fontWeight: 'bold',
-        color: '#ffffff',
-      },
-    },
+  const [options, setOptions] = useState(null);
+  const [series, setSeries] = useState(null);
+  const generateChartData = (categories) => {
+    let data = [];
+    for (let i = 0; i < categories.length; i++) {
+      data.push(getRandomInt(0, 7000));
+    }
+    return data;
   };
-  const seriesDemo = [
-    {
-      name: 'STOCK ABC',
-      data: [30, 40, 45, 50, 49, 60, 70, 91],
-      title: {
-        text: '321321321',
-        align: 'left',
-        margin: 10,
-        offsetX: 0,
-        offsetY: 0,
-        floating: false,
-        style: {
-          fontSize: '14px',
-          fontWeight: 'bold',
-          fontFamily: undefined,
-          color: '#263238',
+  useEffect(() => {
+    const categories = ['Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'];
+
+    const optionsDemo = {
+      chart: {
+        id: 'area',
+        foreColor: '#ffffff',
+        zoom: {
+          enabled: false,
         },
       },
-    },
-  ];
-  const [options, setOptions] = useState(optionsDemo);
-  const [series, setSeries] = useState(seriesDemo);
+      xaxis: {
+        categories: categories,
+      },
+      tooltip: {
+        enabled: false,
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      title: {
+        text: 'Github Events',
+        align: 'left',
+        style: {
+          fontSize: 14,
+          fontWeight: 'bold',
+          color: '#ffffff',
+        },
+      },
+    };
+    const seriesDemo = [
+      {
+        name: 'STOCK ABC',
+        data: generateChartData(categories),
+        title: {
+          text: '321321321',
+          align: 'left',
+          margin: 10,
+          offsetX: 0,
+          offsetY: 0,
+          floating: false,
+          style: {
+            fontSize: '14px',
+            fontWeight: 'bold',
+            fontFamily: undefined,
+            color: '#263238',
+          },
+        },
+      },
+    ];
+    setOptions(optionsDemo);
+    setSeries(seriesDemo);
+  }, []);
+
   return (
     <GridItem
       colSpan={{ base: 1, lg: 2 }}

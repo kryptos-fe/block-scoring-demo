@@ -45,7 +45,7 @@ export const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   const router = useRouter();
   return (
     <Box
-      transition="display 3s"
+      transition="display 1s"
       bg={'sidebarBackground'}
       w={{ base: '100%', lg: 60 }}
       pos="fixed"

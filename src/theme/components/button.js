@@ -38,7 +38,7 @@ export const buttonStyles = {
           fontSize: '10px',
           border: '1px solid',
           borderColor: { bg: mode('blue.400', 'white')(props) },
-          _hover: { bg: mode('blue.50', 'transparent')(props) },
+          _hover: { bg: mode('rgba(255,255,255,0.1)', 'rgba(255,255,255,0.4)')(props) },
           _focus: { bg: mode('blue.50', 'transparent')(props) },
           _active: { bg: mode('blue.50', 'transparent')(props) },
         }),
