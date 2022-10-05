@@ -1,11 +1,11 @@
 console.log(`number of js`.toUpperCase());
-let a = 7;
-let b = 9;
-let c = 2.5;
-let d = `7`;
-let e = `TrUng`;
-let text = a + e ;
-let number = a + b;
+const a = 7;
+const b = 9;
+const c = 2.5;
+const d = `7`;
+const e = `TrUng`;
+const text = a + e ;
+const number = a + b;
 console.log(`cho mot day :`, a,`,`,b,`,`,c,`,`,d,`,`,e);
 
 console.log(`kieu du lieu cua`, text, ` la :`, typeof text );
