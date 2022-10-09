@@ -1,16 +1,17 @@
 console.log(`su dung if-else`)
 
 
-let animalTop4 = ['cho', 'meo', 'chuot', 'chim'];
+let animalTop4 = ['cho', 'meo', 'chim','chuot'];
 
 let i = 0;
+// if lồng while
 while (i < animalTop4.length) {
-    i++;
-    if (animalTop4[i] === 'meo') { 
-        console.log('Found it: ', animalTop4[i])
-        continue;
+    if (animalTop4[i].length === 5) { 
+        console.log('top : ',i+1, animalTop4[i]);
+    }else if(animalTop4[i].length === 3){
+      console.log('top : ',i+1, animalTop4[i]);
+    }else {
     }
-
-    console.log('>>> check i: ', i)
-
+    i++;
 };
+

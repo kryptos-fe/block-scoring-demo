@@ -1,26 +1,26 @@
 console.log('switch case')
-
-let day = '';
-let a = 2;
+let mon = '';
+let a = 6;
 switch (a) {
     case 0:
+      mon = "phở"
+        break;
     case 1:
-        day = "Monday";
+      mon = "bánh mì";
         break;
     case 2:
-        day = "Tuesday";
+      mon = "nước cam";
         break;
     case 3:
-        day = "Wednesday";
+      mon = "pizza";
         break;
     case 4:
-        day = "Thursday";
+      mon = "pasta";
         break;
     case 5:
-        day = "Friday";
+      mon = "bún bò";
         break;
     case 6:
-        day = "Saturday";
+      mon = "bánh đa cua";
 }
-
-console.log('check day: ', day, new Date().getDay());
+console.log('bạn đã chọn món số',a,'là :',mon);
