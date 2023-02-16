@@ -19,11 +19,23 @@ const HomePage = () => {
 
   const { data } = useQuery(['overview'], getOverview);
 
+  console.log('data', data);
+
   const tokenList: Array<Token> =
-    data?.data?.data?.map((token: Token, index: number) => ({
-      ...token,
-      image: coins[index].image,
-      tokenName: coins[index].name,
+    coins.map((coin: any, index: number) => ({
+      id: index.toString(),
+      image: coin.image,
+      tokenName: coin.name,
+      name: coin.name,
+      techRating: {
+        score: Math.floor(Math.random() * 100),
+      },
+      socialRating: {
+        score: Math.floor(Math.random() * 100),
+      },
+      investorRating: {
+        score: Math.floor(Math.random() * 100),
+      },
       rank: index + 1,
     })) || [];
 

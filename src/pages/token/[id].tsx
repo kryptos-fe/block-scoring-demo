@@ -31,11 +31,20 @@ const TokenPage = () => {
   const tokenData = data?.data || {};
 
   const index: number = Number(id) - 1;
-  const coin = coins[index] ? coins[index] : {};
+  const coin = coins[index];
 
   const token: Token = {
-    ...tokenData,
     ...coin,
+    id: index.toString(),
+    techRating: {
+      score: Math.floor(Math.random() * 100),
+    },
+    socialRating: {
+      score: Math.floor(Math.random() * 100),
+    },
+    investorRating: {
+      score: Math.floor(Math.random() * 100),
+    },
   };
 
   token.tokenName = token.name;
